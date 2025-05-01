@@ -35,7 +35,14 @@ const Brand = () => {
   }, []);
 
   return (
-    <div className="bg-black py-10">
+    <div className="bg-black py-10 container mx-auto">
+      <div className="pb-4">
+        <h2 className="flex items-center text-2xl text-white">
+          <span className="text-5xl ">{"{"}</span>
+          GSAP® Tools
+          <span className="text-5xl">{"}"}</span>
+        </h2>
+      </div>
       <div className="container mx-auto flex flex-wrap justify-center gap-5 overflow-hidden">
         {logos.map((logo, index) => (
           <img
@@ -43,7 +50,7 @@ const Brand = () => {
             src={logo}
             alt={`logo-${index}`}
             ref={(el) => (imageRefs.current[index] = el)}
-            className="w-32 h-32 object-contain"
+            className="w-50 h-50 object-contain"
           />
         ))}
       </div>
