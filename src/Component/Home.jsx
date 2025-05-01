@@ -42,8 +42,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="bg-black py-12">
-      <div className="container mx-auto min-h-screen">
+    <div className="bg-black py-12 ">
+      <div className="container mx-auto min-h-screen border-b-2 border-gray-300/45">
         {/* HeroLogo2 - Floating animation */}
         <img
           ref={logo1Ref}
