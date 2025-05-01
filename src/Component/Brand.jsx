@@ -14,25 +14,41 @@ const logos = [Logo1, Logo2, Logo3, Logo4, Logo5, Logo6, Logo7];
 const Brand = () => {
   const imageRefs = useRef([]);
 
-  useEffect(() => {
-    imageRefs.current.forEach((img, index) => {
-      const fromLeft = index % 2 === 0;
-      gsap.fromTo(
-        img,
-        {
-          opacity: 0,
-          x: fromLeft ? -100 : 100,
-        },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          delay: index * 0.3,
-          ease: "power3.out",
-        }
-      );
-    });
-  }, []);
+useEffect(() => {
+  const timeline = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+
+  imageRefs.current.forEach((img, index) => {
+    const fromLeft = index % 2 === 0;
+
+    timeline.fromTo(
+      img,
+      {
+        opacity: 0,
+        x: fromLeft ? -100 : 100,
+      },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: "power3.out",
+      },
+      index * 0.3 // stagger timing
+    );
+  });
+
+  // Optional: fade out again to restart smoothly
+  timeline.to(
+    imageRefs.current,
+    {
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.2,
+      ease: "power1.inOut",
+    },
+    "+=1" // after initial animation finishes
+  );
+}, []);
+
 
   return (
     <div className="bg-black py-10 container mx-auto">
